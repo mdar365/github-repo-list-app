@@ -23,9 +23,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     Scaffold(
+        topBar = { TopBar() },
         content = { bottomPadding ->
             GithubRepoListingAppHomeContent(bottomPadding)
-        }
+        },
+        bottomBar = { TxtField() }
     )
 }
 
