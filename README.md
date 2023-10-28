@@ -3,7 +3,7 @@
 This is an android app designed using Jetpack Compose that lists the repos of any github user. 
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/mdar365/github-repo-list-app/assets/68842181/daf3e60e-1d5e-4644-9277-9b7d4b2fc531">
+    <img width="33%" src="https://github.com/mdar365/github-repo-list-app/assets/68842181/e1ee0b8a-e1bb-407f-b14c-94c13f812379">
 </p>
 
 
