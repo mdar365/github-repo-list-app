@@ -3,47 +3,52 @@ package com.example.githubrepolistingapp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import okhttp3.CipherSuite
-import okhttp3.ConnectionSpec
-import okhttp3.OkHttpClient
-import okhttp3.TlsVersion
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
+import java.net.HttpURLConnection
 
 object GithubApiBuilder {
-    private val spec: ConnectionSpec = ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
-        .tlsVersions(TlsVersion.TLS_1_2, TlsVersion.TLS_1_1, TlsVersion.TLS_1_0)
-        .cipherSuites(
-            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-            CipherSuite.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
-            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
-            CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA)
-        .build()
-    private val okttp: OkHttpClient.Builder = OkHttpClient.Builder()
-        .connectionSpecs(Collections.singletonList(spec))
+    const val DEFAULT_ERROR_MSG = "There was an error"
+
+    var repoResults: List<Repo> by mutableStateOf(listOf())
+    var errorMsg: String? by mutableStateOf(null)
+
     private var retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("https://api.github.com/")
         .addConverterFactory(GsonConverterFactory.create())
-        .client(okttp.build())
         .build()
-
-    var service: GitHubService = retrofit.create(GitHubService::class.java)
-    var repoResults: List<Repo> by mutableStateOf(listOf())
-
+    private var service: GitHubService = retrofit.create(GitHubService::class.java)
 
     fun getRepos(gitUser: String) {
         try {
             val repos: Call<MutableList<Repo>> = service.listRepos(gitUser)
             val response = repos.execute()
+
             println("Response code ${response.code()}")
+
+            if (!checkResponseIsSuccessful(response)) return
             response.body()?.let {
                 repoResults = it
                 println(repoResults)
             }
         } catch (e: Exception) {
-            println("ERROR IN GET REPO: $e")
+            errorMsg = DEFAULT_ERROR_MSG
+            repoResults = listOf()
+            println("Error when retrieving repositories: $e")
         }
+    }
+
+    private fun checkResponseIsSuccessful(response: Response<MutableList<Repo>>): Boolean {
+        errorMsg = when {
+            response.body()?.isEmpty() == true -> "User has no repositories"
+            response.isSuccessful -> null
+            response.code() == HttpURLConnection.HTTP_NOT_FOUND -> "User not found"
+            else -> DEFAULT_ERROR_MSG
+        }
+
+        if (errorMsg != null) repoResults = listOf()
+        return errorMsg == null
     }
 }

@@ -1,7 +1,6 @@
 package com.example.githubrepolistingapp
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -18,4 +17,5 @@ fun GithubRepoListingAppHomeContent(bottomPadding: PaddingValues) {
             RepoListItem(repo = repo)
         }
     }
+    if (GithubApiBuilder.errorMsg != null) ErrorDisplay()
 }
