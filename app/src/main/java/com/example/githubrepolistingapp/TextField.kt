@@ -12,11 +12,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.launch
+import java.util.concurrent.Executors
 
 @Composable
 fun TxtField() {
     var text by rememberSaveable { mutableStateOf("") }
-
+    val singleThreadedDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    val localScope = CoroutineScope(singleThreadedDispatcher + Job())
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -34,7 +40,11 @@ fun TxtField() {
         )
 
         Button(
-            onClick = {}
+            onClick = {
+                localScope.launch {
+                    GithubApiBuilder.getRepos(text)
+                }
+            }
         ) {
             Text(text = "FETCH REPOS")
         }

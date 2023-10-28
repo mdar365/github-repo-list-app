@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.text.font.FontLoadingStrategy.Companion.Async
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.githubrepolistingapp.ui.theme.GithubRepoListingAppTheme
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +29,7 @@ fun MyApp() {
     Scaffold(
         topBar = { TopBar() },
         content = { bottomPadding ->
+            println("REPO_LIST: ${GithubApiBuilder.repoResults.size}")
             GithubRepoListingAppHomeContent(bottomPadding)
         },
         bottomBar = { TxtField() }

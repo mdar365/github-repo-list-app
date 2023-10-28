@@ -11,15 +11,13 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun GithubRepoListingAppHomeContent(bottomPadding: PaddingValues) {
-    val repos = remember { DataProvider.repoList }
+    val repos = remember { GithubApiBuilder.repoResults }
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         modifier = Modifier.padding(bottom = bottomPadding.calculateBottomPadding())
     ) {
-        items(
-            items = repos,
-            itemContent = {
-                RepoListItem(repo = it)
-            })
+        items(GithubApiBuilder.repoResults) { repo ->
+            RepoListItem(repo = repo)
+        }
     }
 }

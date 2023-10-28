@@ -1,7 +1,9 @@
 package com.example.githubrepolistingapp
 
+import com.google.gson.annotations.SerializedName
+
 data class Repo(
-    val name: String,
-    val description: String,
-    val htmlUrl: String
+    @SerializedName("name") val name: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("html_url") val htmlUrl: String
 )
