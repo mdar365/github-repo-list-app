@@ -1,8 +1,9 @@
-package com.example.githubrepolistingapp
+package com.example.githubrepolistingapp.service
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.example.githubrepolistingapp.model.Repo
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package com.example.githubrepolistingapp
+package com.example.githubrepolistingapp.model
 
 import com.google.gson.annotations.SerializedName
 

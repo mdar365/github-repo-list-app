@@ -1,6 +1,7 @@
-package com.example.githubrepolistingapp
+package com.example.githubrepolistingapp.service
 
 
+import com.example.githubrepolistingapp.model.Repo
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

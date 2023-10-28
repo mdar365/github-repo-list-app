@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import com.example.githubrepolistingapp.service.GithubApiBuilder
 import com.example.githubrepolistingapp.ui.theme.GithubRepoListingAppTheme
 
 class MainActivity : ComponentActivity() {
