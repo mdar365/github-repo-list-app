@@ -1,4 +1,4 @@
-package com.example.githubrepolistingapp
+package com.example.githubrepolistingapp.component
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text

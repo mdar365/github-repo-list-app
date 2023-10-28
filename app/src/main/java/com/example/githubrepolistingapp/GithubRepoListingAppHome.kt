@@ -6,6 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.githubrepolistingapp.component.ErrorDisplay
+import com.example.githubrepolistingapp.component.RepoListItem
 import com.example.githubrepolistingapp.service.GithubApiBuilder
 
 @Composable

@@ -1,4 +1,4 @@
-package com.example.githubrepolistingapp
+package com.example.githubrepolistingapp.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

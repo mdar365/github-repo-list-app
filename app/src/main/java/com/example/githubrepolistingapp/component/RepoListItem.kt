@@ -1,4 +1,4 @@
-package com.example.githubrepolistingapp
+package com.example.githubrepolistingapp.component
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
@@ -10,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import com.example.githubrepolistingapp.model.Repo
@@ -23,7 +22,6 @@ fun RepoListItem(repo: Repo) {
     Card(
         modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp).fillMaxWidth(),
         elevation = 2.dp,
-        backgroundColor = Color.White,
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         onClick = { uriHandler.openUri(repo.htmlUrl) }
     ) {
